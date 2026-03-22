@@ -66,7 +66,7 @@ export default function AdminHome() {
         formData.append("profilePic", profilePic);
       }
 
-      const res = await fetch("http://localhost:5000/api/users/update-profile", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/update-profile`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
