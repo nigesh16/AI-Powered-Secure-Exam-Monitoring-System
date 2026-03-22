@@ -13,7 +13,7 @@ Secure online exams with AI cheating detection (YOLOv8 + face detection).
 
 ### 1. MongoDB
 
-Ensure MongoDB is running locally (default: `mongodb://localhost:27017`).
+MongoDB Atlas is used as the cloud database for storing application data.
 
 ### 2. Backend
 
