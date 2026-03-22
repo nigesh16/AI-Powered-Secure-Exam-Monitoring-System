@@ -9,7 +9,6 @@ Secure online exams with AI cheating detection (YOLOv8 + face detection).
 - **Database**: MongoDB
 - **AI Engine**: Python, FastAPI, YOLOv8, OpenCV
 
-## Setup
 
 ### 1. MongoDB
 
@@ -25,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Backend runs on http://localhost:5000
+Backend runs on https://ai-powered-secure-exam-monitoring-system.onrender.com
 
 ### 3. AI Engine
 
@@ -37,7 +36,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-AI engine runs on http://localhost:8000
+The AI module was developed using YOLO and CNN. Due to free-tier deployment limitations, it is demonstrated locally. The deployed version focuses on core system functionality.
 
 ### 4. Frontend
 
@@ -47,7 +46,7 @@ npm install
 npm run dev
 ```
 
-Frontend runs on http://localhost:3000 (proxies /api to backend)
+Frontend runs on https://ai-powered-secure-exam-monitoring-s.vercel.app
 
 ## Usage
 
