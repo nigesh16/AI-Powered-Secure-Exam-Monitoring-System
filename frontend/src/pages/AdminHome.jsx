@@ -134,7 +134,7 @@ export default function AdminHome() {
 
             {currentProfilePic ? (
               <img
-                src={`http://localhost:5000${currentProfilePic}`}
+                src={`${import.meta.env.VITE_API_URL}/${currentProfilePic}`}
                 className="w-9 h-9 rounded-full object-cover cursor-pointer border border-slate-200"
                 onClick={() => setShowProfile(true)}
                 alt="profile"
@@ -179,7 +179,7 @@ export default function AdminHome() {
                 />
               ) : currentProfilePic ? (
                 <img
-                  src={`http://localhost:5000${currentProfilePic}`}
+                  src={`${import.meta.env.VITE_API_URL}/${currentProfilePic}`}
                   className="w-24 h-24 rounded-full object-cover"
                   alt="profile"
                 />
