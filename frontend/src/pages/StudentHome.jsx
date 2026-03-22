@@ -71,7 +71,7 @@ export default function StudentHome() {
         formData.append("profilePic", profilePic);
       }
 
-      const res = await fetch("http://localhost:5000/api/users/update-profile", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/update-profile`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -132,7 +132,7 @@ export default function StudentHome() {
 
             {user?.profilePic ? (
               <img
-                src={`http://localhost:5000${user.profilePic}`}
+                src={`${import.meta.env.VITE_API_URL}/${user.profilePic}`}
                 className="w-9 h-9 rounded-full object-cover cursor-pointer border border-slate-200"
                 onClick={() => {
                   setUsername(user.username);
@@ -188,7 +188,7 @@ export default function StudentHome() {
               ) : user?.profilePic ? (
 
                 <img
-                  src={`http://localhost:5000${user.profilePic}`}
+                  src={`${import.meta.env.VITE_API_URL}/${user.profilePic}`}
                   className="w-24 h-24 rounded-full object-cover"
                   alt="profile"
                 />
