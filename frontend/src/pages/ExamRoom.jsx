@@ -209,6 +209,20 @@ export default function ExamRoom() {
     return `${m}:${sec.toString().padStart(2, '0')}`;
   };
 
+  // ✅ SUBMIT FUNCTION ADDED
+  const handleSubmit = () => {
+    const confirmSubmit = window.confirm("Are you sure you want to submit?");
+    if (!confirmSubmit) return;
+
+    setSubmitted(true);
+    setStatus('SUBMITTED');
+
+    alert("Exam submitted successfully!");
+
+    stopCamera();
+    navigate('/student');
+  };
+
   if (submitted && result) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
@@ -247,9 +261,7 @@ export default function ExamRoom() {
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="font-bold text-slate-800 truncate">{exam.title}</h1>
           <div className="flex items-center gap-4">
-            <span
-              className={`font-mono font-semibold ${timeLeft <= 300 ? 'text-red-600' : 'text-slate-700'}`}
-            >
+            <span className={`font-mono font-semibold ${timeLeft <= 300 ? 'text-red-600' : 'text-slate-700'}`}>
               {formatTime(timeLeft ?? 0)}
             </span>
             <span className="text-sm text-slate-600">
@@ -275,20 +287,15 @@ export default function ExamRoom() {
                 <p className="text-slate-700 mb-4">{current.questionText}</p>
                 <div className="space-y-3">
                   {current.options.map((opt, i) => (
-                    <label
-                      key={i}
-                      className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                        answers.find((a) => a.questionId === current.questionId)?.selectedOption === i
-                          ? 'border-primary-500 bg-primary-50'
-                          : 'border-slate-200 hover:border-primary-300'
-                      }`}
-                    >
+                    <label key={i} className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                      answers.find((a) => a.questionId === current.questionId)?.selectedOption === i
+                        ? 'border-primary-500 bg-primary-50'
+                        : 'border-slate-200 hover:border-primary-300'
+                    }`}>
                       <input
                         type="radio"
                         name={`q-${current.questionId}`}
-                        checked={
-                          answers.find((a) => a.questionId === current.questionId)?.selectedOption === i
-                        }
+                        checked={answers.find((a) => a.questionId === current.questionId)?.selectedOption === i}
                         onChange={() => handleAnswer(current.questionId, i)}
                         className="sr-only"
                       />
@@ -299,6 +306,7 @@ export default function ExamRoom() {
               </>
             )}
           </div>
+
           <div className="flex gap-2 flex-wrap">
             {questions.map((q, i) => (
               <button
@@ -316,6 +324,17 @@ export default function ExamRoom() {
               </button>
             ))}
           </div>
+
+          {/* ✅ SUBMIT BUTTON */}
+          <div className="mt-6">
+            <button
+              onClick={handleSubmit}
+              className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold w-full"
+            >
+              Submit Exam
+            </button>
+          </div>
+
         </div>
 
         <div className="lg:w-1/3">
