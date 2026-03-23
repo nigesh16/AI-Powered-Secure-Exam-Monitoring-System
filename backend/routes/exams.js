@@ -21,8 +21,8 @@ router.post('/', protect, adminOnly, async (req, res) => {
     if (!title || !date || !startTime || !endTime || !duration || !password || !questions?.length) {
       return res.status(400).json({ message: 'All exam fields are required' });
     }
-    const start = new Date(`${date}T${startTime}:00.000Z`);
-    const end = new Date(`${date}T${endTime}:00.000Z`);
+    const start = new Date(`${date}T${startTime}`);
+    const end = new Date(`${date}T${endTime}`);
     const totalMarks = questions.reduce((sum, q) => sum + (q.marks || 0), 0);
     const exam = await ExamRoom.createExam({
       title,
