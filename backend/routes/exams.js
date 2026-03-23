@@ -9,6 +9,7 @@ import { upload } from '../config/upload.js';
 const router = Router();
 
 const updateExamStatus = (exam) => {
+  const now = new Date();
   const istNow = new Date(
     now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
   );
