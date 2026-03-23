@@ -13,8 +13,8 @@ const updateExamStatus = (exam) => {
   const istNow = new Date(
     now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
   );
-  if (now < exam.startTime) return 'UPCOMING';
-  if (now > exam.endTime) return 'COMPLETED';
+  if (istNow < exam.startTime) return 'UPCOMING';
+  if (istNow > exam.endTime) return 'COMPLETED';
   return 'LIVE';
 };
 
