@@ -122,8 +122,17 @@ router.post('/:examId/join', protect, studentOnly, async (req, res) => {
     const valid = await exam.comparePassword(password);
     if (!valid) return res.status(401).json({ message: 'Invalid exam password' });
     const now = new Date();
-    if (now < exam.startTime) return res.status(400).json({ message: 'Exam has not started yet' });
-    if (now > exam.endTime) return res.status(400).json({ message: 'Exam has ended' });
+    const istNow = new Date(
+      now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+    );
+    
+    if (istNow < exam.startTime) {
+      return res.status(400).json({ message: 'Exam has not started yet' });
+    }
+    
+    if (istNow > exam.endTime) {
+      return res.status(400).json({ message: 'Exam has ended' });
+    }
     const alreadyJoined = exam.students.some((s) => s.studentId.toString() === req.user._id.toString());
     if (alreadyJoined) return res.status(400).json({ message: 'Already joined this exam' });
     exam.students.push({
