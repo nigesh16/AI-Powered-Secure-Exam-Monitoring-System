@@ -71,7 +71,9 @@ router.get('/', protect, adminOnly, async (req, res) => {
       .sort({ createdAt: -1 })
       .select('-password -students.answers -students.cheatingLogs')
       .lean();
-    const now = new Date();
+    const now = new Date(
+      new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+    );
     for (const exam of exams) {
       if (now >= exam.startTime && now <= exam.endTime && exam.status !== 'COMPLETED') {
         exam.status = 'LIVE';
