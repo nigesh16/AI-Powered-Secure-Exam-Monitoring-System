@@ -6,7 +6,7 @@ const questionSchema = new mongoose.Schema(
     questionId: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
     questionText: { type: String, required: true },
     options: [{ type: String, required: true }],
-    correctAnswer: { type: Number, required: true }, 
+    correctAnswer: { type: Number, required: true },  
     marks: { type: Number, required: true },
   },
   { _id: false }
